@@ -1,0 +1,33 @@
+package Tests;
+
+import Pages.LoginPage;
+import Pages.RecruitmentPage;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class RecruitmentTest extends BaseTest
+{
+
+    @Test
+    public void recruitmentTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.Login("Admin", "admin123");
+
+        RecruitmentPage recruitmentPage = new RecruitmentPage(driver);
+        recruitmentPage.clickRecruitmentLink();
+        recruitmentPage.clickVacancies();
+        recruitmentPage.selectJobTitle("Account Assistant");
+        recruitmentPage.selectVacancy("Sales Representative");
+        recruitmentPage.selectHiringManager("First Name Last Name");
+        recruitmentPage.selectStatus("Active");
+//        recruitmentPage.clickSearch();
+
+    }
+//@BeforeMethod
+//    public void tearDown()
+//    {
+//            driver.quit();
+//    }
+
+
+}

@@ -1,0 +1,115 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class AdminPage extends BasePage
+{
+    WebDriverWait wait = BasePage.wait;
+    public AdminPage(WebDriver driver)
+    {
+        super(driver);
+    }
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a/span")
+    WebElement AdminLink;
+
+    @FindBy(css = "div[class='oxd-input-group oxd-input-field-bottom-space'] div input[class='oxd-input oxd-input--active']")
+    WebElement Username;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]")
+    WebElement SerachButton;
+
+    @FindBy(xpath= "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[1]/button")
+    WebElement AddButton;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div/div[1]")
+    WebElement UserRole;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div/input")
+    WebElement EmployeeName;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[1]")
+    WebElement Status;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input")
+    WebElement UsernameAdd;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[1]/div/div[2]/input")
+    WebElement PasswordAdd;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input")
+    WebElement ConfirmPasswordAdd;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[3]/button[2]")
+    WebElement SaveButton;
+
+
+    public void AdminLoginbutton()
+    {
+        BasePage.WaitingForElementToBeClickable(AdminLink);
+        AdminLink.click();
+    }
+    public void SetUsername(String username)
+    {
+        BasePage.WaitingForElementToBeClickable(Username);
+        Username.sendKeys(username);
+    }
+    public void SearchButton()
+    {
+        SerachButton.submit();
+    }
+
+    public void AddButton()
+    {
+        BasePage.WaitingForElementToBeClickable(AddButton);
+        AddButton.click();
+    }
+
+    public void SetUserRole(String userrole)
+    {
+        BasePage.WaitingForElementToBeClickable(UserRole);
+        UserRole.sendKeys(userrole);
+    }
+
+    public void SetEmployeeName(String employeename)
+    {
+        BasePage.WaitingForElementToBeClickable(EmployeeName);
+        EmployeeName.sendKeys(employeename);
+    }
+
+    public void SetStatus(String status)
+    {
+        BasePage.WaitingForElementToBeClickable(Status);
+        Select select =new Select(Status);
+        select.selectByVisibleText("Enabled");
+        Status.click();
+    }
+
+    public void SetUsernameAdd(String usernameadd)
+    {
+        BasePage.WaitingForElementToBeClickable(UsernameAdd);
+        UsernameAdd.sendKeys(usernameadd);
+    }
+    public void SetPasswordAdd(String passwordadd)
+    {
+        BasePage.WaitingForElementToBeClickable(PasswordAdd);
+        PasswordAdd.sendKeys(passwordadd);
+    }
+    public void SetConfirmPasswordAdd(String confirmpasswordadd)
+    {
+        BasePage.WaitingForElementToBeClickable(ConfirmPasswordAdd);
+        ConfirmPasswordAdd.sendKeys(confirmpasswordadd);
+    }
+    public void SaveButton()
+    {
+        BasePage.WaitingForElementToBeClickable(SaveButton);
+        SaveButton.click();
+    }
+
+}
+

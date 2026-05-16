@@ -1,0 +1,257 @@
+package Pages;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class RecruitmentPage extends BasePage
+{
+    WebDriverWait wait = BasePage.wait;
+
+
+    public RecruitmentPage(WebDriver driver)
+    {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    @FindBy(css = "#app > div.oxd-layout.orangehrm-upgrade-layout > div.oxd-layout-navigation > aside > nav > div.oxd-sidepanel-body > ul > li:nth-child(5) > a > span")
+    WebElement RecruitmentLink;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[1]/header/div[2]/nav/ul/li[2]")
+    WebElement Vacancies;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div")
+    WebElement  JobTitle;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div/div[1]")
+    WebElement Vacancy;
+    @FindBy(css = "#app > div.oxd-layout.orangehrm-upgrade-layout > div.oxd-layout-container > div.oxd-layout-context > div > div.oxd-table-filter > div.oxd-table-filter-area > form > div.oxd-form-row > div > div:nth-child(3) > div > div:nth-child(2) > div > div > div.oxd-select-text-input")
+    WebElement HiringManager;
+    @FindBy(xpath ="//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div")
+    WebElement Status;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]")
+    WebElement SearchButton;
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[1]")
+    WebElement ResetButton;
+
+
+
+
+    public void clickRecruitmentLink()
+    {
+        wait.until(ExpectedConditions.elementToBeClickable(RecruitmentLink));
+        RecruitmentLink.click();
+    }
+    public void clickVacancies()
+    {
+        wait.until(ExpectedConditions.elementToBeClickable(RecruitmentLink));
+        Vacancies.click();
+    }
+    public void selectJobTitle(String title) throws InterruptedException
+    {
+
+        // Wait until the Job Title dropdown is clickable, then click it to open options
+        wait.until(ExpectedConditions.elementToBeClickable(JobTitle));
+        JobTitle.click();
+
+// Wait until the desired option is visible in the Job Title dropdown
+        By optionLocator = By.xpath("//div[@role='option']/span[text()='" + title + "']");
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+        option.click();
+
+// Wait until the Job Title dropdown shows the selected value (confirmation)
+        wait.until(ExpectedConditions.textToBePresentInElement(JobTitle, title));
+
+    }
+
+    public void selectVacancy(String vacancy) throws InterruptedException
+    {
+
+        // Wait until the dropdown element is clickable, then click it to open options
+        wait.until(ExpectedConditions.elementToBeClickable(Vacancy));
+        Vacancy.click();
+
+        // Wait until the desired option is visible in the dropdown
+        By optionLocator = By.xpath("//div[@role='option']/span[text()='" + vacancy + "']");
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+        option.click();
+
+        // Wait until the vacancy dropdown shows the selected value (confirmation)
+        wait.until(ExpectedConditions.textToBePresentInElement(Vacancy, vacancy));
+    }
+
+    public void selectHiringManager(String manager)
+    {
+        // Wait until the Hiring Manager dropdown is clickable, then click it to open options
+        wait.until(ExpectedConditions.elementToBeClickable(HiringManager));
+        HiringManager.click();
+
+    // Wait until the desired option is visible in the Hiring Manager dropdown
+        By optionLocator = By.xpath("//div[@role='option']/span[text()='" + manager + "']");
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+        option.click();
+
+    // Wait until the Hiring Manager dropdown shows the selected value (confirmation)
+        wait.until(ExpectedConditions.textToBePresentInElement(HiringManager, manager));
+
+    }
+
+    public void selectStatus(String status)
+    {
+        // Wait until the Status dropdown is clickable, then click it to open options
+        wait.until(ExpectedConditions.elementToBeClickable(Status));
+        Status.click();
+
+        // Wait until the desired option is visible in the Status dropdown
+        By optionLocator = By.xpath("//div[@role='option']/span[text()='" + status + "']");
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionLocator));
+        option.click();
+
+        // Wait until the Status dropdown shows the selected value (confirmation)
+        wait.until(ExpectedConditions.textToBePresentInElement(Status, status));
+    }
+
+    public void clickSearch()
+    {
+        wait.until(ExpectedConditions.elementToBeClickable(SearchButton));
+        SearchButton.click();
+    }
+
+    public void clickReset()
+    {
+        wait.until(ExpectedConditions.elementToBeClickable(ResetButton));
+        ResetButton.click();
+    }
+
+
+
+
+
+}
+//    public void ClickRecruitmentLink()
+//    {
+//        ClickRecruitmentLink();
+//    }
+//    public void ClickVacancies()
+//    {
+//        try {
+//            logger.trace("Clicking Vacancies");
+//            Vacancies.click();
+//            logger.debug("Clicked Vacancies");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to Click Vacancies");
+//        }
+//    }
+//    public void selectFromDropdown(WebElement dropdown, String optionText)
+//    {
+//        try {
+//            dropdown.click();
+//            Thread.sleep(1000); // Short wait for dropdown options to appear
+//
+//            // Locate all options under the dropdown list
+//            List<WebElement> options = driver.findElements(By.xpath("//div[@role='listbox']//span"));
+//
+//            for (WebElement option : options) {
+//                if (option.getText().trim().equalsIgnoreCase(optionText.trim())) {
+//                    option.click();
+//                    logger.info("Selected option: " + optionText);
+//                    return;
+//                }
+//            }
+//
+//            logger.warn("Option not found in dropdown: " + optionText);
+//        } catch (Exception e) {
+//            logger.error("Dropdown selection failed for: " + optionText, e);
+//        }
+//    }
+//
+//    public void selectJobTitle(String jobTitle)
+//    {
+//        try {
+//            logger.trace("Selecting Job Title");
+//            selectFromDropdown(JobTitle, jobTitle);
+//            logger.debug("Selected Job Title");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to select Job Title");
+//        }
+//    }
+//    public void selectVacancy(String vacancy)
+//    {
+//        try {
+//            logger.trace("Selecting Vacancy");
+//            selectFromDropdown(Vacancy, vacancy);
+//            logger.debug("Selected Vacancy");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to select Vacancy");
+//        }
+//    }
+//    public void selectHiringManager(String hiringManager)
+//    {
+//        try {
+//            logger.trace("Selecting Hiring Manager");
+//            selectFromDropdown(HiringManager, hiringManager);
+//            logger.debug("Selected Hiring Manager");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to select Hiring Manager");
+//        }
+//    }
+//    public void selectStatus(String status)
+//    {
+//        try {
+//            logger.trace("Selecting Status");
+//            selectFromDropdown(Status, status);
+//            logger.debug("Selected Status");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to select Status");
+//        }
+//    }
+//    public void setJobTitle(String jobTitle)
+//    {
+//        try {
+//            logger.trace("Setting Job Title");
+//            JobTitle.sendKeys(jobTitle);
+//            logger.debug("Set Job Title");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to set Job Title");
+//        }
+//    }
+//    public void ClickSearchButton()
+//    {
+//        try {
+//            logger.trace("Clicking Search Button");
+//            SearchButton.click();
+//            logger.debug("Clicked Search Button");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to Click Search Button");
+//        }
+//    }
+//    public void ClickResetButton()
+//    {
+//        try {
+//            logger.trace("Clicking Reset Button");
+//            ResetButton.click();
+//            logger.debug("Clicked Reset Button");
+//        }
+//        catch (Exception e)
+//        {
+//            logger.error("Failed to Click Reset Button");
+//        }
+//    }
